@@ -1,0 +1,13 @@
+body{
+	display: flex;
+}
+
+.titulo{
+	flex-direction: column;
+	text-align: center;
+}
+
+.textoName{
+	flex-direction: column;
+	text-align: center;
+}
