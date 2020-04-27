@@ -48,9 +48,21 @@ let newOrders = orders.map( item => {
     }
 })
 
+let newOrders_ = orders.map( item => {
+    return {
+        orderNumber: item.orderNumber,
+    }
+})
+
 console.log('orders => ', orders);
 console.log('ordersNew => ', newOrders);
+console.log('ordersNew => ', newOrders_);
 
+let newOrders_1 = orders.map( (item, index, array) => {
+    setTimeout( () => {
+        console.log(array[index] == item);
+    },1000)
+})
 
 
 
