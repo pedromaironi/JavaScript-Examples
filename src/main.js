@@ -1,49 +1,35 @@
 console.log('\tWELCOME');
-/* Map functions */
-/* Buscando un objetivo*/
 
-nums = [2, 7, 11, 15], target = 9;
-function buscandoObjetivo(nums, target){
-let map = new Map();
-    for(var i = 0; i<nums.length ; i++){
-        let encontrado = target - nums[i];
-        if(map.has(encontrado)){
-            return [map.get(nums[i]),i];
-        }else{
-            return map.set(nums[i],i);
-        }
+
+/* Arrays: */
+/* 
+    Eliminar un elemento
+    .shift() - Elimina el primer elemento del array y dvuelve ese elemento
+    El método pop() elimina el último elemento de un array y lo devuelve. 
+    Este método cambia la longitud del array.
+    .push() - agrega elementos a el array
+    .unshift() - agrega elementos a el array y retorna su longitud
+    .indexOf() - devuelve el indice del valor encontrado y si no lo encuentra devuelve -1;
+    .lasIdexOf() - devuelve el ultimo index que coincide con el valor especificado 
+    sino -1 si no es econtrado
+    .reverse() - voltear el array
+*/
+
+
+
+var array = [1,2,3,4];
+var newArray = [];
+var funcion = (array) => { 
+    for(var i = 0 ; i < array.length ; i++){
+        if( i < array.length ){
+            let num = array.pop(array[i]);
+            i-=1;
+            newArray.push(num);
+        } 
     }
+    return newArray;
 }
 
-console.log(buscandoObjetivo(nums,target));
+console.log('Array: ', array);
 
-
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* function getUsuario(){
-    var login = {
-        user: "Pedro",
-        pass: "1234"
-    };
-    return {user, pass} = login;
-}
-
-getUsuario(user)
-.then(function (user){
-    this.user = login.user
-    console.log(user);
-})
- */
+console.log('newArray: ', funcion(array));
