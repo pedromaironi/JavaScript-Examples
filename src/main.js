@@ -1,74 +1,21 @@
 console.log('\tWELCOME');
 /* Map functions */
-/* Es una funcion que te permite crear un nuevo arreglo
-a partir de uno existente, es decir, que se puede iterar un arreglo
-que ya se tiene, y generar uno nuevo basado en los elementos que tiene el viejo arreglo.
+/* Buscando un objetivo*/
 
-Recibe dos parametros(funcion para la cual)
- */
-
-let orders = [
-    {
-        orderNumber: 1,
-        total: 200,
-        customer: {
-            name: 'Pedro MT'
-        }
-    },
-    {
-        orderNumber: 2,
-        total: 300,
-        customer: {
-            name: 'Pedro MT2'
-        }
-    },
-    {
-        orderNumber: 3,
-        total: 400,
-        customer: {
-            name: 'Pedro MT3'
-        }
-    },
-    {
-        orderNumber: 4,
-        total: 500,
-        customer: {
-            name: 'Pedro MT4'
+nums = [2, 7, 11, 15], target = 9;
+function buscandoObjetivo(nums, target){
+let map = new Map();
+    for(var i = 0; i<nums.length ; i++){
+        let encontrado = target - nums[i];
+        if(map.has(encontrado)){
+            return [map.get(nums[i]),i];
+        }else{
+            return map.set(nums[i],i);
         }
     }
-]
+}
 
-/* Orders queda intacto y es asignado a newOrders de una manera diferente y entendible 
-ECMAscript6*/
-let newOrders = orders.map( item => {
-    return {
-        orderNumber: item.orderNumber,
-        total: item.total,
-        customerName: item.customer.name
-    }
-})
-
-let newOrders_ = orders.map( item => {
-    return {
-        orderNumber: item.orderNumber,
-    }
-})
-
-console.log('orders => ', orders);
-console.log('ordersNew => ', newOrders);
-console.log('ordersNew => ', newOrders_);
-
-let newOrders_1 = orders.map( (item, index, array) => {
-    setTimeout( () => {
-        console.log(array[index] == item);
-    },1000)
-})
-
-
-
-
-
-
+console.log(buscandoObjetivo(nums,target));
 
 
 
