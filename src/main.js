@@ -8,9 +8,16 @@ console.log('\tWELCOME');
     For in: devuelve el nombre de la key o index de el array u objeto
 */
 
-Array = ['Pedro', 'Toribio'];
+Person = 
+{
+    name: 'Pedro', 
+    lastName: 'Toribio', 
+    customer : [
+        pedro = 'pedro'
+    ]   
+};
 
-for(let propiedades in Array){
-    console.log(propiedades);
+for(const propiedades in Person){
+    console.log(Person[propiedades]);
 }
 
