@@ -7,9 +7,18 @@ console.log('\tWELCOME');
     para realizar un incremento o dar un numero x de vueltas. Esto simplifica el metodo tradicional
 */
 
-Array = ['Pedro', 'Toribio'];
+Array = [
+    {
+    name =  'pedro'
+    }
+    ,
+    {
+    lastName = 'Toribio'
+    }
+];
 
 for(let propiedades of Array){
     console.log(propiedades);
 }
+
 
