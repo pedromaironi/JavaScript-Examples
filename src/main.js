@@ -23,9 +23,28 @@ for(let items in Array2){
 
 console.log(Array);
  */
+/* 
+ Copiar array a otro
 const Array = ['pedro'];
 const Array2 = [...Array];
 console.log(Array);
+ */
+/* 
 
+const Array = ['pedro'];
+const Array2 = ['Toribio'];
 
+Mala forma
+let concat = Array.concat(Array2);
+console.log(concat);
 
+Otra forma 
+let concat = [...Array1, ...Array2]; */
+
+/* 
+const restParams = (...numbers)=> {
+    console.log(numbers);
+}
+
+restParams(1,2,2,2,2,2,2,2,2,2,2,2); 
+*/
