@@ -19,10 +19,15 @@
     ! rejected (rechazada)
     ! Resolve: Operacion exitosa
 */
+/*  
+    * DIVIDE Es un funcion con dos parametros que son el dividendo y el divisor 
+    * Que retorna una promesa,las promesas suelen ejecutarse donde son declaradas es decir en el Promise( () => {})
+*/
+
 function divide(dividendo, divisor) {
     return new Promise((resolve, reject) => {
       if (divisor === 0) {
-        reject(new Error('No se puede dividir entre 0'));
+        reject(new Error('No se puede dividir entre 0 \n'));
       } else {
         resolve(dividendo/divisor);
       }
@@ -40,3 +45,60 @@ function divide(dividendo, divisor) {
   }
   
   test();
+
+
+  /* 
+    * Async: retorna originalmente una promesa ya resultas con el resultado de esta.
+    * Await: Hace que la ejecucion del codigo espere que una promesa sea resulta para evitar escribir then
+    * Solo se puede utilizar await dentro de una funcion marcada como async
+
+  */
+  /* async function suma(a,b){
+      return a + b;
+  }
+
+  async function calcular(){
+      return new Promise( (resolve,reject) => {
+          setTimeout((resolve) => {
+            resolve('hola');
+          },400)
+      });
+  } */
+  
+  let promesa = new Promise( (resolve, reject) => {
+      setTimeout(resolve,500,5);
+  });
+
+  promesa.then( (resultado) => { console.log(resultado);
+  })
+
+  function potencia() {
+    return 10000 ** 2
+  }
+  
+  async function obtenPotencia() {
+    const respuesta =  await potencia()
+    return respuesta
+  }
+
+  obtenPotencia().then((result) => {
+    console.log(result)
+  }).catch( (result) => {
+    console.log(`Algo salio mal: ${result}`);
+  })
+
+  function suma(){
+    return 1+ 2;
+  }
+
+  async function getSumar() {
+    const result = await suma();
+    return result;
+  };
+
+
+
+  getSumar().then( 
+    (result) => { 
+      console.log(`La suma es igual a: ${result}`);
+  })
