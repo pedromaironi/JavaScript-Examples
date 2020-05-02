@@ -13,7 +13,7 @@ const person = [
     }
 ]
 
-const email = [
+const emails = [
     {
         email: 'pedro@hotmail.com',
         id: 1
@@ -25,42 +25,40 @@ const email = [
         id: 3
     }
 ]
+let promise;
+const getPerson = (id) => {
+    const persona = person.find(persona => persona.id == id )
+    return promise = new Promise ( (resolve, reject) => {
+        if(!persona) reject(`Doesn't exist an user with id ${id}`);
+        else resolve(persona);
+    });
+}
+    
 
-const getPerson = (id,cb) => {
-
-    const persona = person.find(persona => persona.id == id );
-    if(!persona) return console.log(`El ${persona.name} no se encuentra`);
-    else cb(null, persona);
+const getEmail = (user) => {
+    const email = emails.find(email => email.id = user.id );
+    return promise = new Promise( (resolve, reject ) => {
+        if(!user) reject(`${user.name} hasn't email`);
+        else resolve({
+            id: user.id,
+            name: user.name,
+            email: email.email
+        })
+    })
 }
 
-const getEmail = (id, cb) => {
-    const email1 = email.find(emails => emails.id = id );
-    if(!email1) return console.log(`El id:${id} no se encuentra en la base de datos`);
-    else cb (null,email1);
-}
+// * Como no se puede acceder de forma directa a la propiedad .value de las promesas utilizamos la propiedad 
+// * then para acceder a estos datos encapsulados
+getPerson(5).then( persona => getEmail(persona))
+            .then( data => console.log(data))
+            .catch( err => console.log(err));
+            // ! Catch para manejar errores y evitar uncaught exception
 
-getPerson(1, (err, persona) => {
+
+
+/* if(err) console.log(`El error es: ${err}`);
+console.log(persona);
+getEmail(1, (err, email) => {
     if(err) console.log(`El error es: ${err}`);
-        console.log(persona);
-        getEmail(1, (err, email) => {
-            if(err) console.log(`El error es: ${err}`);
-            console.log(email);
-            getEmail(1, (err, email) => {
-                if(err) console.log(`El error es: ${err}`);
-                console.log(email);
-                getEmail(1, (err, email) => {
-                    if(err) console.log(`El error es: ${err}`);
-                    console.log(email);
-                    getEmail(1, (err, email) => {
-                        if(err) console.log(`El error es: ${err}`);
-                        console.log(email);
-                        getEmail(1, (err, email) => {
-                            if(err) console.log(`El error es: ${err}`);
-                            console.log(email);
-                        });
-                    });
-                });
-            });
-            
-        });
-});
+    console.log(`La persona ${persona.name} posee el id:1 con el email ${email.email}`);
+}); */
