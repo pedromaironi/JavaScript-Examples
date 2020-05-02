@@ -1,31 +1,45 @@
 /* 
-    * Es cualquier objeto que implemente el protocolo iterator
-    * Es decir cualquier objeto que implemente un metodo next que retorne un objeto con una propiedad value y done
-*/
-
-let iterador = {
-    currentValue: 1, 
-    next(){
-
-        let result = { value:null, done:false};
-
-        if(this.currentValue > 0 && this.currentValue <= 5){
-            result = { value: this.currentValue, done: false };
-            this.currentValue += 1;
-        } else {
-            result = {done:true};
-        }
-        return result;
-        /* return {
-            value: null, // ? La propiedad value es esta propiedad que va recorriendo un dato a la vez [num,cadena,objeto,funcion]
-            done: true // ? Indica si el iterador ha terminado de producir valores a iterar o no. Completado(true) noCompletado(false)
-        } */
+    * Peticiones Ajax
+    ! Para saber la version del navegador que soporta Ajax
+    if(window.XMLHttpRequest){
+        xhr = new XMLHttpRequest()
+    } else {
+        xhr = new ActiveXObject('Microsoft.XMLHTTP');
     }
-};
+    ! JSON = notación de objeto de JavaScript
+});
+*/  
 
-let item = iterador.next();
+const button = document.getElementById('button');
 
-while(!item.done){
-    console.log(item.value);
-    item = iterador.next();
-}
+button.addEventListener('click', () => {
+    let xhr;
+    if(window.XMLHttpRequest){
+        xhr = new XMLHttpRequest();
+    } else {
+        xhr = new ActiveXObject('Microsoft.XMLHTTP');
+    }
+    
+    //  1- El metodo que vamos a usar para la peticion GET PUT DELETE 
+    // 2- La url de la api
+    // Abriendo conexion
+    xhr.open('GET','https://jsonplaceholder.typicode.com/users/1/posts');
+
+    // * Ajax es async no funciona en orden. El sistema espera a que la peticion termine de realizarse para mostrarse
+    // * LOAD Este evento se dispara cuando toda la informacion ha llegado al objeto
+    xhr.addEventListener('load', (data) => {
+        const json = JSON.parse(data.target.response);
+        console.log(json);
+        
+
+        const list = document.getElementById('list');
+        for(let info of json){
+            const listItem = document.createElement('li');
+            listItem.textContent = `${info.id} - ${info.title}`;
+            list.appendChild(listItem);
+        }
+    })
+
+    //Enviando la peticion
+    xhr.send();
+});
