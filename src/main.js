@@ -1,45 +1,66 @@
-/* 
-    * Peticiones Ajax
-    ! Para saber la version del navegador que soporta Ajax
-    if(window.XMLHttpRequest){
-        xhr = new XMLHttpRequest()
-    } else {
-        xhr = new ActiveXObject('Microsoft.XMLHTTP');
+
+
+const person = [
+    {
+        name: 'Pedro',
+        id: 1
+    },{
+        name: 'Laura',
+        id: 2
+    },{
+        name: 'Deisbelle'
+        ,id:3
     }
-    ! JSON = notación de objeto de JavaScript
-});
-*/  
+]
 
-const button = document.getElementById('button');
-
-button.addEventListener('click', () => {
-    let xhr;
-    if(window.XMLHttpRequest){
-        xhr = new XMLHttpRequest();
-    } else {
-        xhr = new ActiveXObject('Microsoft.XMLHTTP');
+const email = [
+    {
+        email: 'pedro@hotmail.com',
+        id: 1
+    },{
+        email: 'Laura@hotmail.com',
+        id: 2
+    },{
+        email: 'Debby@hotmail.com',
+        id: 3
     }
-    
-    //  1- El metodo que vamos a usar para la peticion GET PUT DELETE 
-    // 2- La url de la api
-    // Abriendo conexion
-    xhr.open('GET','https://jsonplaceholder.typicode.com/users/1/posts');
+]
 
-    // * Ajax es async no funciona en orden. El sistema espera a que la peticion termine de realizarse para mostrarse
-    // * LOAD Este evento se dispara cuando toda la informacion ha llegado al objeto
-    xhr.addEventListener('load', (data) => {
-        const json = JSON.parse(data.target.response);
-        console.log(json);
-        
+const getPerson = (id,cb) => {
 
-        const list = document.getElementById('list');
-        for(let info of json){
-            const listItem = document.createElement('li');
-            listItem.textContent = `${info.id} - ${info.title}`;
-            list.appendChild(listItem);
-        }
-    })
+    const persona = person.find(persona => persona.id == id );
+    if(!persona) return console.log(`El ${persona.name} no se encuentra`);
+    else cb(null, persona);
+}
 
-    //Enviando la peticion
-    xhr.send();
+const getEmail = (id, cb) => {
+    const email1 = email.find(emails => emails.id = id );
+    if(!email1) return console.log(`El id:${id} no se encuentra en la base de datos`);
+    else cb (null,email1);
+}
+
+getPerson(1, (err, persona) => {
+    if(err) console.log(`El error es: ${err}`);
+        console.log(persona);
+        getEmail(1, (err, email) => {
+            if(err) console.log(`El error es: ${err}`);
+            console.log(email);
+            getEmail(1, (err, email) => {
+                if(err) console.log(`El error es: ${err}`);
+                console.log(email);
+                getEmail(1, (err, email) => {
+                    if(err) console.log(`El error es: ${err}`);
+                    console.log(email);
+                    getEmail(1, (err, email) => {
+                        if(err) console.log(`El error es: ${err}`);
+                        console.log(email);
+                        getEmail(1, (err, email) => {
+                            if(err) console.log(`El error es: ${err}`);
+                            console.log(email);
+                        });
+                    });
+                });
+            });
+            
+        });
 });
