@@ -29,7 +29,7 @@
 ## Wiki 📖
 #### Puedes utilizar la documentacion para guiarte | [FirefoxMDN](https://developer.mozilla.org/es/)
 
-Autores ✒️
+## Autores ✒️
 #### Pedro M. Toribio - Documentacion - Practicante | [Twitter](https://twitter.com/pedrodeveloper29)
 
 ```
